@@ -12,9 +12,7 @@ paid plan and no model download.
 > and also ran it. One run shows that the instrument can be run. It does not
 > show how developers in general behave. The only run so far is incomplete.
 
-Article: *Do You Still Own the Code Your AI Wrote? I Built CodeOwnership to
-Measure It* (link to be added when published).
-
+Read the full write-up on Towards Data Science → [Do You Still Own the Code Your AI Wrote? I Built CodeOwnership to Measure It](https://towardsdatascience.com/author/emmimalp.alexander/)
 "Ownership" here means practical ownership: you can explain the code and fix it
 without the agent. It says nothing about copyright or licensing of generated code.
 
