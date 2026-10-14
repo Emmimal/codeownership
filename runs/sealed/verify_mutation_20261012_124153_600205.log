@@ -1,0 +1,9 @@
+visible suite passes: True  (visible: 11 run, 0 failed)
+hidden failures confined to TestLastMembership: True  (hidden: 13 run, 3 failed)
+public mutation check passes: True  (check: 6 run, 0 failed)
+
+hidden failed tests:
+  test_folder_invariants.TestLastMembership.test_note_can_be_filed_again_afterwards
+  test_folder_invariants.TestLastMembership.test_note_with_only_that_folder_survives
+  test_folder_invariants.TestLastMembership.test_surviving_note_is_unfiled_and_intact
+mutation check failed tests:
