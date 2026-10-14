@@ -10,8 +10,7 @@ paid plan and no model download.
 
 > **Status: V0.1, a single-developer pilot.** The author designed the benchmark
 > and also ran it. One run shows that the instrument can be run. It does not
-> show how developers in general behave. The only run so far is incomplete (see
-> [Pilot result](#pilot-result-run-r1)).
+> show how developers in general behave. The only run so far is incomplete.
 
 Article: *Do You Still Own the Code Your AI Wrote? I Built CodeOwnership to
 Measure It* (link to be added when published).
@@ -170,16 +169,39 @@ codeownership/
 │   └── selftest.py            72 checks on the harness
 │
 └── runs/
-    ├── sealed/                Sealed mutation-verification logs
-    └── r1/                    The pilot run reported below
-        ├── metadata.md
-        ├── confidence.md
-        ├── debugging_log.md
-        ├── explanation.md
-        ├── results.md
-        ├── pilot_state.json   Where the guided pilot stopped
-        └── REPORT.md          Generated report (INCOMPLETE)
+    ├── .gitkeep
+    ├── sealed/                          Sealed logs written by verify-mutation
+    │   └── verify_mutation_20261012_124153_600205.log
+    └── r1/                              The pilot run reported below
+        ├── metadata.md                  Models, versions, environment (partly filled by the tool)
+        ├── confidence.md                Confidence rating, committed before the mutation
+        ├── debugging_log.md             Debugging record and timer
+        ├── explanation.md               Written explanation, committed before any score
+        ├── results.md                   Recorded results
+        ├── answers.md                   Comprehension answers (not filled in r1)
+        ├── answer_key.md                Facts used to score answers (not filled in r1)
+        ├── pilot_state.json             Where the guided pilot stopped
+        ├── REPORT.md                    Generated report (INCOMPLETE)
+        ├── agent_original/              The implementation the agent wrote, before the mutation
+        │   ├── .gitkeep
+        │   └── app/
+        │       ├── __init__.py
+        │       ├── notes.py
+        │       ├── folders.py
+        │       └── store.py
+        └── agent_mutated/               The same code after the planted bug
+            ├── .gitkeep
+            └── app/
+                ├── __init__.py
+                ├── notes.py
+                ├── folders.py
+                └── store.py
 ```
+
+Each run also uses working folders **outside the repository** (the folder you pass
+to `--work`): `agent_view/` for the implementation agent, `mutation_view/` for the
+mutation agent and `debug_view/` for the developer. They are exported clean, with no
+history, specs, hidden tests or rubric, and are not part of the repo.
 
 ---
 
@@ -209,8 +231,9 @@ What this shows and does not show:
   objective check beside the developer's own answer.
 - The later discovery is the author's own account. Nothing in the harness records it.
 
-**Errata.** `runs/r1/REPORT.md` lists the run date as 2026-10-10. The run took
-place on 2026-10-12. The committed files were not edited.
+**Errata.** `runs/r1/REPORT.md` lists the run date as 2026-10-10. That is the
+date `new-run` stamped when the run folder was created. The pilot itself was
+carried out on 2026-10-12. The committed files were not edited.
 
 ---
 
@@ -222,8 +245,8 @@ place on 2026-10-12. The committed files were not edited.
 - Self-scored rubric. The commit order reduces rewriting answers to fit, but it
   does not remove bias.
 - Agent output varies between runs. Record the model, version and prompt.
-- **The hidden tests, the rubric, the reference implementation and the
-  mutation spec are public in this repository.** Anyone who reads them before
+- **The hidden tests, the rubric, the reference implementation, the mutation
+  spec and the run's `agent_mutated/` code are public in this repository.** Anyone who reads them before
   running the benchmark loses the blind test. A fair run needs the runner to
   avoid those folders until the relevant phase.
 - Run `r1` was incomplete, and the tools were not the same at every stage. The
@@ -252,7 +275,7 @@ place on 2026-10-12. The committed files were not edited.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. 
 
 ## Author
 
